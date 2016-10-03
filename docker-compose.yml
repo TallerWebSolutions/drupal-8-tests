@@ -21,7 +21,7 @@ services:
     image: drupal-8-tests
     build: ./docker
     hostname: "dev"
-    working_dir: /taller/dpl-8
+    working_dir: /taller/dpl-8/web
     cap_add:
       - NET_ADMIN
       - SYS_ADMIN

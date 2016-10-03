@@ -1,7 +1,7 @@
 .PHONY: run in stop mysql clean build
 
 run:
-	docker-compose run --rm -p 8080:80 dev
+	docker-compose run --rm -p 9000:9000 -p 8080:80 dev
 
 in:
 	docker exec -it $(shell docker-compose ps | grep _dev_run_ | cut -d" " -f 1) /bin/bash
@@ -20,5 +20,5 @@ stop:
 clean:
 	docker-compose down
 
-build:
+build: clean
 	docker-compose build dev

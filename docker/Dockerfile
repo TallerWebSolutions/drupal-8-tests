@@ -17,8 +17,9 @@ COPY ./www.conf      /etc/php5/fpm/pool.d/www.conf
 COPY ./fpm.ini       /etc/php5/fpm/php.ini
 COPY ./cli.ini       /etc/php5/cli/php.ini
 COPY ./xdebug.ini    /etc/php5/mods-available/xdebug.ini
-COPY ./cron /taller/cron
+COPY ./entrypoint.sh /etc/entrypoint.sh
 
+RUN sudo chmod +x /etc/entrypoint.sh
 RUN chown taller:taller /taller/.bashrc
 RUN composer self-update
 
@@ -27,8 +28,6 @@ USER taller
 WORKDIR /taller
 
 RUN composer global require "hirak/prestissimo:^0.3"
-COPY ./entrypoint.sh /etc/entrypoint.sh
-RUN sudo chmod +x /etc/entrypoint.sh
 
 CMD ["/bin/bash"]
 ENTRYPOINT ["/etc/entrypoint.sh"]

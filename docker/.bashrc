@@ -20,7 +20,7 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;30m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[0;32m\]\u:\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$ '
 
 # enable bash completion in interactive shells
 if ! shopt -oq posix; then
@@ -62,5 +62,5 @@ if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found/command-no
 fi
 
 PATH="/usr/local/bin:$PATH"
-PATH="/faq/src/vendor/bin:$PATH"
-PATH="/faq/src/web/themes/custom/webapp/node_modules/.bin:$PATH"
+PATH="$PWD/vendor/bin:$PATH"
+PATH="$PWD/node_modules/.bin:$PATH"
